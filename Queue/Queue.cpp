@@ -45,12 +45,6 @@ struct strnode* Queue::dequeue(){
     return tmp;
 }
 
-/*void Queue::printList(){
-    for(tmp=start; tmp!=NULL; tmp=tmp->next){
-        Serial.println(tmp->taskptr);
-    }
-}*/
-
 int* Queue::getPeriods(){
 	int i;
 	int periods[getNoOfTasks()];
