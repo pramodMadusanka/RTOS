@@ -11,9 +11,6 @@ typedef struct strnode{
 	void (*taskptr)(void* arg);
 	int checked;
 	struct strnode* next;
-	int* periods;
-	int noOfTasks;
-	int i;
 }node;
 
 class Queue{
