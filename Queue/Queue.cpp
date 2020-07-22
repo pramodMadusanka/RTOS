@@ -46,10 +46,10 @@ struct strnode* Queue::dequeue(){
 }
 
 int* Queue::getPeriods(){
-	int i = 0, noOfTasks = getNoOfTasks();
-	int periods[noOfTasks];
+	int i = 0;
+	int* periods = (int*)malloc(sizeof(int)*getNoOfTasks());
 	for(tmp=start; tmp!=NULL; tmp=tmp->next){
-		periods[i] = tmp->period;
+		*(periods+i) = tmp->period;
 		i++;
 	}
 	return periods;
