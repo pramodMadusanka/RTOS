@@ -1,4 +1,0 @@
-Queue	KEYWORD1
-enqueue	KEYWORD2
-dequeue	KEYWORD2
-printList	KEYWORD2
