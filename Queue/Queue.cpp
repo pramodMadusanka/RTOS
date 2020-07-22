@@ -46,10 +46,12 @@ struct strnode* Queue::dequeue(){
 }
 
 int* Queue::getPeriods(){
-	int i;
-	int periods[getNoOfTasks()];
-	for(tmp=start; tmp!=NULL; tmp=tmp->next)
+	int i = 0, noOfTasks = getNoOfTasks();
+	int periods[noOfTasks];
+	for(tmp=start; tmp!=NULL; tmp=tmp->next){
 		periods[i] = tmp->period;
+		i++;
+	}
 	return periods;
 }
 
