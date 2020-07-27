@@ -16,7 +16,7 @@ typedef struct strnode{
 class Queue{
 	public:
 		Queue(void);
-		void enqueue(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg));
+		void addTask(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg));
 		void enqueue(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked);
 		struct strnode* dequeue();
 		int getMajorCycle();
