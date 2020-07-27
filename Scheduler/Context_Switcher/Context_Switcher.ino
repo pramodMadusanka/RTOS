@@ -1,7 +1,13 @@
 /*
  * This code was implemented for an Arduino UNO
  * It uses the built-in LED (pin 13) in funcA() and funcB()
- * No external components are used
+ * No external hardware components are used
+ *
+ * To upload this code to arduino,
+ * You should first download Queue folder and zip it
+ * Then, you should include the zip files to the Arduino IDE
+ * Sketch -> Include Libaray -> Add .ZIP Library... -> then find the zipped file, select and press OK
+ * Then you should be able to upload the code to a Arduino board
  * 
  * The queue linked list adds to the list at the end (the tail)
  * removes from the list at the start (the head)
@@ -33,8 +39,8 @@ void setup() {
 
     // add the functions to the queue
     // q.enqueue(name, period, length, address, 0);
-    q.enqueue('A', 10, 2, &funcA, 0);
-    q.enqueue('B', 10, 1, &funcB, 0);
+    q.addTask('A', 10, 2, &funcA);
+    q.addTask('B', 10, 1, &funcB);
 
     // setting up the timer1 for periodic interrupts
     TCCR1A = 0;// set entire TCCR1A register to 0
