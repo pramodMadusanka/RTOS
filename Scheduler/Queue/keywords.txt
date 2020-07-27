@@ -1,4 +1,5 @@
 Queue		KEYWORD1
+addTask		KEYWORD2
 enqueue		KEYWORD2
 dequeue		KEYWORD2
 printList	KEYWORD2
