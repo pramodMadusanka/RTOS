@@ -19,14 +19,17 @@ class Queue{
 		void enqueue(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg));
 		void enqueue(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked);
 		struct strnode* dequeue();
-		void printList();
-		int* getPeriods();
-		uint8_t getNoOfTasks();
+		int getMajorCycle();
+		int getMinPeriod();
+
 	private:
 		struct strnode* tmp;
 		struct strnode* start;
 		struct strnode* end;
 		struct strnode* createNode(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked);
+		int* getPeriods();
+		uint8_t getNoOfTasks();
+		int GCD(int a, int b);
 };
 
 #endif
