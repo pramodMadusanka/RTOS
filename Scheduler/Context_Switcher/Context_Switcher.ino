@@ -37,8 +37,8 @@ void setup() {
     Serial.begin(2000000);
     pinMode(LED, OUTPUT);
 
-    // add the functions to the queue
-    // q.enqueue(name, period, length, address, 0);
+    // add the tasks (functions) to the queue
+    // q.addTask(name, period, length, address);
     q.addTask('A', 10, 2, &funcA);
     q.addTask('B', 10, 1, &funcB);
 
