@@ -19,7 +19,7 @@ struct strnode* Queue::createNode(char name, int period, uint8_t exec_time, void
     return tmp;
 }
 
-void Queue::enqueue(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg)){
+void Queue::addTask(char name, int period, uint8_t exec_time, void (*taskptr)(void* arg)){
     if(start==NULL){
         start=createNode(name, period, exec_time, taskptr, 0);
         end=start;
