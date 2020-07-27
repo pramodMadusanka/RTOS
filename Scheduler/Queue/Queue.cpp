@@ -71,3 +71,27 @@ uint8_t Queue::getNoOfTasks(){
 		noOfTasks++;
 	return noOfTasks;
 }
+
+int Queue::GCD(int a, int b){
+	if (b == 0)
+		return a;
+	return GCD(b, a % b);
+}
+
+int Queue::getMajorCycle(){
+	int* periods = getPeriods();
+	int ans = *periods;
+	for (int i = 1; i < getNoOfTasks(); i++)
+		ans = (((*(periods+i) * ans)) / (GCD(*(periods+i), ans)));
+	free(periods);
+	return ans;
+}
+
+int Queue::getMinPeriod(){
+	int minPeriod = start->period;
+	for(tmp=start->next; tmp!=NULL; tmp=tmp->next){
+		if(minPeriod > tmp->period)
+			minPeriod = tmp->period;
+	}
+	return minPeriod;
+}
