@@ -1,6 +1,6 @@
 Queue		KEYWORD1
 enqueue		KEYWORD2
 dequeue		KEYWORD2
-printList		KEYWORD2
-getPeriods	KEYWORD2
-getNoOfTasks	KEYWORD2
+printList	KEYWORD2
+getMinPeriod	KEYWORD2
+getMajorCycle	KEYWORD2
