@@ -37,14 +37,12 @@ void removeNode(struct node* node_to_remove){
 }
 
 void coalesce(int start, int size, struct node** root){
-  Serial.println("coalesce");
   struct node* closest_to_root;
   if((*root)->start + (*root)->size == start){
     (*root)->size +=size;
     for(struct node* tmp=(*root)->right_child; tmp!=NULL; tmp=tmp->left_child){
       closest_to_root = tmp;
     }
-    Serial.println(closest_to_root->start);
     if(closest_to_root->start == (*root)->start + (*root)->size){
       (*root)->size += closest_to_root->size;
       removeNode(closest_to_root);
