@@ -2,6 +2,8 @@
  * This code was implemented for an Arduino UNO
  * No external hardware components are used
  *
+ * You can download arduino IDE using following link: https://www.arduino.cc/en/Main/Software
+ *
  * To upload this code to arduino,
  * You should first create a folder called "Queue"
  * Then go to the link: https://github.com/pramodMadusanka/RTOS/tree/master/Scheduler/Queue
