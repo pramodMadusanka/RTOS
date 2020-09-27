@@ -39,7 +39,7 @@ void Queue::addTask(uint8_t period, uint8_t exec_time, void (*taskptr)(void* arg
 }*/
 
 void Queue::enqueue(struct strnode* PCB, uint8_t checked){
-	PCB->checked = checked;
+    PCB->checked = checked;
     if(start==NULL){
         start=PCB;
         end=start;
