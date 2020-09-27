@@ -50,10 +50,10 @@ void Queue::enqueue(struct strnode* PCB, uint8_t checked){
 }
 
 struct strnode* Queue::dequeue(){
-    tmp = NULL;
-	if(start == NULL){
-		return tmp;
-	}
+    if(start == NULL){
+	return start;
+    }
+	
     tmp=start;
 
     if(start==end){
