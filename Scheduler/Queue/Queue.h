@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 typedef struct node{
-	int period;
+	uint8_t period;
 	uint8_t exec_time;
 	void (*taskptr)(void* arg);
 	uint8_t checked;
