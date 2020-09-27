@@ -40,12 +40,7 @@ void Queue::enqueue(struct strnode* node, int wakeupTime){
 }
 
 struct strnode* Queue::dequeue(){
-	if(start == NULL){
-		return start;
-	}
-
     tmp=start;
-
     if(start==end){
         start=NULL;
         end=NULL;
