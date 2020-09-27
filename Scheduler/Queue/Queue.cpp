@@ -7,7 +7,7 @@ Queue::Queue(void){
 	end   = NULL;
 }
 
-struct strnode* Queue::createNode(uint8_t period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked){
+struct strnode* Queue::createPCB(uint8_t period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked){
     tmp=(struct strnode*)malloc(sizeof(struct strnode));
     tmp->period=period;
     tmp->exec_time=exec_time;
@@ -20,20 +20,31 @@ struct strnode* Queue::createNode(uint8_t period, uint8_t exec_time, void (*task
 
 void Queue::addTask(uint8_t period, uint8_t exec_time, void (*taskptr)(void* arg)){
     if(start==NULL){
-        start=createNode(period, exec_time, taskptr, 0);
+        start=createPCB(period, exec_time, taskptr, 0);
         end=start;
     } else {
-        end->next=createNode(period, exec_time, taskptr, 0);
+        end->next=createPCB(period, exec_time, taskptr, 0);
         end=end->next;
     }
 }
 
-void Queue::enqueue(uint8_t period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked){
+/*void Queue::enqueue(uint8_t period, uint8_t exec_time, void (*taskptr)(void* arg), uint8_t checked){
     if(start==NULL){
         start=createNode(period, exec_time, taskptr, checked);
         end=start;
     } else {
         end->next=createNode(period, exec_time, taskptr, checked);
+        end=end->next;
+    }
+}*/
+
+void Queue::enqueue(struct strnode* PCB, uint8_t checked){
+	PCB->checked = checked;
+    if(start==NULL){
+        start=PCB;
+        end=start;
+    } else {
+        end->next=PCB;
         end=end->next;
     }
 }
