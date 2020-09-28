@@ -4,12 +4,12 @@
 #include <Arduino.h>
 #include <stdio.h>
 
-typedef struct strnode{
+typedef struct node{
 	void (*taskptr)(void* arg);
 	uint8_t priority;
 	int wakeupTime;
-	struct strnode* next;
-}node;
+	struct node* next;
+};
 
 class Queue{
 	public:
