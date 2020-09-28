@@ -88,8 +88,6 @@ void initTimer(){
 
 ISR(TIMER1_COMPA_vect, ISR_NAKED){
     wakeup();
-    if(runningQueue.start != 0)
-        asm volatile("reti \n\r");
     if(runningQueue.start->priority < readyQueue.start->priority)
         asm volatile("reti \n\r");
     
