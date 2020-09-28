@@ -60,16 +60,16 @@ struct strnode* Queue::getStart(){
 	return start;
 }
 
-void Queue::addNode(struct strnode* head, struct strnode* node){
+void Queue::addPCB(struct strnode* head, struct strnode* PCB){
 	if(head == start){
-		node->next = head;
-		start = node;
+		PCB->next = head;
+		start = PCB;
 	} else if(head == end){
-		head->next = node;
-		end = node;
+		head->next = PCB;
+		end = PCB;
 	} else {
-		node->next = head->next;
-		head->next = node;
+		PCB->next = head->next;
+		head->next = PCB;
 	}
 }
 
