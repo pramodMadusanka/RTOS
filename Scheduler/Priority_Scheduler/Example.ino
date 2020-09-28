@@ -90,13 +90,13 @@ ISR(TIMER1_COMPA_vect, ISR_NAKED){
     wakeup();
     if(runningQueue.start != 0)
         asm volatile("reti \n\r");
+    if(runningQueue.start->priority < readyQueue.start->priority)
+        asm volatile("reti \n\r");
     
+    runningQueue.start->SP = SP;
     struct strnode* tmp = readyQueue.dequeue();
     runningQueue.enqueue(tmp, 0);
     int funcAddr = (int)(tmp->taskptr);
-    
-    SP_L = SP&0x00FF;
-    SP_H = (SP>>8)&0x00FF;
     
     funcAddrL = funcAddr&0x00FF;
     funcAddrH = (funcAddr>>8)&0x00FF;
