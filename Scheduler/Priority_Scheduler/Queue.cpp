@@ -9,11 +9,25 @@ Queue::Queue(void){
 
 struct strnode* Queue::createNode(void (*taskptr)(void* arg), uint8_t priority, int wakeupTime){
     tmp=(struct strnode*)malloc(sizeof(struct strnode));
-    tmp->name=name;
     tmp->taskptr=taskptr;
     tmp->priority=priority;
-	tmp->wakeupTime=wakeupTime;
+    tmp->wakeupTime=wakeupTime;
+    tmp->SP = nextSP++;
     tmp->next=NULL;
+	
+    SP = tmp->SP;
+    taskptrL = taskptr&0x00FF;
+    taskptrH = (taskptr>>8)&0x00FF;
+    
+    asm volatile(        
+        "LDS    r30, (taskptrL)"     "\n\r"
+        "LDS    r31, (taskptrH)"     "\n\r"
+    
+        "PUSH   r30"                  "\n\r"
+        "PUSH   r31"                  "\n\r"
+
+        "reti"                        "\n\r"
+    );
 
     return tmp;
 }
