@@ -87,29 +87,32 @@ void initTimer(){
 }
 
 ISR(TIMER1_COMPA_vect, ISR_NAKED){
-    Serial.print("< ");
-    if(runningQueue.start != 0){
-        //Serial.print((int)runningQueue.getStart());
-        Serial.println("\t SAME >");
+    if(runningQueue.start != 0)
         asm volatile("reti \n\r");
-    }
+    
     struct strnode* tmp = readyQueue.dequeue();
     runningQueue.enqueue(tmp, 0);
     int funcAddr = (int)(tmp->taskptr);
-            
+    
+    SP = SP-2;
+    SP_L = SP&0x00FF;
+    SP_H = (SP>>8)&0x00FF;
+    
     funcAddrL = funcAddr&0x00FF;
     funcAddrH = (funcAddr>>8)&0x00FF;
     
-    asm volatile(        
-        "LDS    r30, (funcAddrL)"     "\n\r"
-        "LDS    r31, (funcAddrH)"     "\n\r"
-    
-        "PUSH   r30"                  "\n\r"
-        "PUSH   r31"                  "\n\r"
-
-        //"reti"                        "\n\r"
+    asm volatile(
+        "PUSH   r0"                   "\n\r"
+                            .
+                            .
+                            .
+        "PUSH   r31"                   "\n\r"
+        "LDS    r30, (SP_L)"           "\n\r"
+        "LDS    r31, (SP_H)"           "\n\r"
+        "PUSH   r30"                   "\n\r"
+        "PUSH   r31"                   "\n\r"
     );
-    Serial.println("\t FUNC >");
+    SP = tmp->SP;
     asm volatile("reti \n\r");
 }
 
