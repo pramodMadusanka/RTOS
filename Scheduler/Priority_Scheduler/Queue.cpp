@@ -7,7 +7,7 @@ Queue::Queue(void){
 	end   = NULL;
 }
 
-struct strnode* Queue::createNode(void (*taskptr)(void* arg), uint8_t priority, int wakeupTime){
+struct strnode* Queue::createPCB(void (*taskptr)(void* arg), uint8_t priority, int wakeupTime){
     tmp=(struct strnode*)malloc(sizeof(struct strnode));
     tmp->taskptr=taskptr;
     tmp->priority=priority;
