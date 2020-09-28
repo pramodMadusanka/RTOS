@@ -12,9 +12,10 @@ struct strnode* Queue::createNode(void (*taskptr)(void* arg), uint8_t priority, 
     tmp->taskptr=taskptr;
     tmp->priority=priority;
     tmp->wakeupTime=wakeupTime;
-    tmp->SP = nextSP++;
+    tmp->SP = nextSP;
     tmp->next=NULL;
-	
+
+    nextSP -= 128; 
     SP = tmp->SP;
     taskptrL = taskptr&0x00FF;
     taskptrH = (taskptr>>8)&0x00FF;
