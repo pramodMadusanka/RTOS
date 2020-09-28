@@ -26,7 +26,7 @@ class Queue{
 		void addNode(struct strnode* head, struct strnode* node);
 		
 	private:
-		int nextBP;
+		int nextBP = 0x08FF;
 		struct strnode* tmp;
 		struct strnode* createNode(char name, void (*taskptr)(void* arg), uint8_t priority, int wakeupTime);
 		struct strnode* getTail(struct strnode* cur);
