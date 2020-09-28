@@ -61,7 +61,7 @@ struct strnode* Queue::dequeue(){
 
 int* Queue::getPeriods(){
 	uint8_t i = 0;
-	int* periods = (int*)malloc(sizeof(int)*getNoOfTasks());
+	uint8_t* periods = (int*)malloc(sizeof(int)*getNoOfTasks());
 	for(tmp=start; tmp!=NULL; tmp=tmp->next){
 		*(periods+i) = tmp->period;
 		i++;
@@ -83,16 +83,16 @@ int Queue::GCD(int a, int b){
 }
 
 int Queue::getMajorCycle(){
-	int* periods = getPeriods();
-	int ans = *periods;
-	for (int i = 1; i < getNoOfTasks(); i++)
+	uint8_t* periods = getPeriods();
+	uint8_t ans = *periods;
+	for (uint8_t i = 1; i < getNoOfTasks(); i++)
 		ans = (((*(periods+i) * ans)) / (GCD(*(periods+i), ans)));
 	free(periods);
 	return ans;
 }
 
 int Queue::getMinPeriod(){
-	int minPeriod = start->period;
+	uint8_t minPeriod = start->period;
 	for(tmp=start->next; tmp!=NULL; tmp=tmp->next){
 		if(minPeriod > tmp->period)
 			minPeriod = tmp->period;
