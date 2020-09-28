@@ -8,6 +8,7 @@ typedef struct PCB{
 	void (*taskptr)(void* arg);
 	uint8_t priority;
 	int wakeupTime;
+	int BP, SP;
 	struct PCB* next;
 };
 
@@ -25,6 +26,7 @@ class Queue{
 		void addNode(struct strnode* head, struct strnode* node);
 		
 	private:
+		int nextBP;
 		struct strnode* tmp;
 		struct strnode* createNode(char name, void (*taskptr)(void* arg), uint8_t priority, int wakeupTime);
 		struct strnode* getTail(struct strnode* cur);
