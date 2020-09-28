@@ -7,7 +7,7 @@ Queue::Queue(void){
 	end   = NULL;
 }
 
-struct strnode* Queue::createNode(char name, void (*taskptr)(void* arg), uint8_t priority, int wakeupTime){
+struct strnode* Queue::createNode(void (*taskptr)(void* arg), uint8_t priority, int wakeupTime){
     tmp=(struct strnode*)malloc(sizeof(struct strnode));
     tmp->name=name;
     tmp->taskptr=taskptr;
@@ -18,7 +18,7 @@ struct strnode* Queue::createNode(char name, void (*taskptr)(void* arg), uint8_t
     return tmp;
 }
 
-void Queue::addTask(char name, void (*taskptr)(void* arg), uint8_t priority){
+void Queue::addTask(void (*taskptr)(void* arg), uint8_t priority){
     if(start==NULL){
         start=createNode(name, taskptr, priority, 0);
         end=start;
