@@ -102,23 +102,15 @@ void initTimer(){
 }
 
 ISR(TIMER1_COMPA_vect, ISR_NAKED){
-    //Serial.print("< ");
-    if(i>59){
+    if(i>NO_OF_TASKS)
       i=0;
-    }
     int funcAddr = (int)((*(schedule+i))->taskptr);
     i++;
     
-    if((*(schedule+i-1))==NULL){
-        Serial.print(i-1);
-        //Serial.println("\t NULL >");
+    if((*(schedule+i-1))==NULL)
         asm volatile("reti \n\r");
-    }
-    if((*(schedule+i-1)) == (*(schedule+i-2))){
-        Serial.print(i-1);
-        //Serial.println("\t SAME >");
+    if((*(schedule+i-1)) == (*(schedule+i-2)))
         asm volatile("reti \n\r");
-    }
         
     funcAddrL = funcAddr&0x00FF;
     funcAddrH = (funcAddr>>8)&0x00FF;
@@ -130,11 +122,8 @@ ISR(TIMER1_COMPA_vect, ISR_NAKED){
         "PUSH   r30"                  "\n\r"
         "PUSH   r31"                  "\n\r"
 
-        //"reti"                        "\n\r"
+        "reti"                        "\n\r"
     );
-    Serial.print(i-1);
-    //Serial.println("\t FUNC >");
-    asm volatile("reti \n\r");
 }
 
 /*void taskSleep(int sleepTime){
