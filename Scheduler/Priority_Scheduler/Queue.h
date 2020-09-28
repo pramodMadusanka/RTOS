@@ -5,7 +5,6 @@
 #include <stdio.h>
 
 typedef struct strnode{
-	char name;
 	void (*taskptr)(void* arg);
 	uint8_t priority;
 	int wakeupTime;
