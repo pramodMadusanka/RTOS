@@ -95,7 +95,6 @@ ISR(TIMER1_COMPA_vect, ISR_NAKED){
     runningQueue.enqueue(tmp, 0);
     int funcAddr = (int)(tmp->taskptr);
     
-    SP = SP-2;
     SP_L = SP&0x00FF;
     SP_H = (SP>>8)&0x00FF;
     
@@ -108,13 +107,16 @@ ISR(TIMER1_COMPA_vect, ISR_NAKED){
                             .
                             .
         "PUSH   r31"                   "\n\r"
-        "LDS    r30, (SP_L)"           "\n\r"
-        "LDS    r31, (SP_H)"           "\n\r"
-        "PUSH   r30"                   "\n\r"
-        "PUSH   r31"                   "\n\r"
     );
     SP = tmp->SP;
-    asm volatile("reti \n\r");
+    asm volatile(
+        "POP   r0"                   "\n\r"
+                            .
+                            .
+                            .
+        "POP   r31"                   "\n\r"
+        "reti"                        "\n\r"
+    );
 }
 
 
