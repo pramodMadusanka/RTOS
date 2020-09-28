@@ -115,13 +115,11 @@ ISR(TIMER1_COMPA_vect, ISR_NAKED){
 
 
 
-/*void wakeup(){
+void wakeup(){
     for(struct strnode* node = waitQueue.getStart(); node != NULL; node = node->next){
         if(millis() >= node->wakeupTime)
             priorityEnqueue(waitQueue.dequeue());
     }
-
-    //if()
 }
 
 void priorityEnqueue(struct strnode* node){
@@ -137,6 +135,5 @@ void priorityEnqueue(struct strnode* node){
 
 void delayTask(int waitms){
     struct strnode* tmp = runningQueue.dequeue();
-    waitQueue.enqueue(tmp->name, tmp->period, tmp->exec_time, tmp->taskptr, tmp->priority, tmp->checked, millis()+waitms);
-    //WAITFLAG = 1;
-}*/
+    waitQueue.enqueue(tmp millis()+waitms);
+}
