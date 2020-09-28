@@ -4,11 +4,11 @@
 #include <Arduino.h>
 #include <stdio.h>
 
-typedef struct node{
+typedef struct PCB{
 	void (*taskptr)(void* arg);
 	uint8_t priority;
 	int wakeupTime;
-	struct node* next;
+	struct PCB* next;
 };
 
 class Queue{
