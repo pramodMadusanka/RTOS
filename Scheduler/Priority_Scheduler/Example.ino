@@ -135,7 +135,7 @@ void priorityEnqueue(struct strnode* node){
 
 void sleep(int waitms){
     struct strnode* tmp = runningQueue.dequeue();
-    waitQueue.enqueue(tmp millis()+waitms);
+    waitQueue.enqueue(tmp, millis()+waitms);
 }
 
 
