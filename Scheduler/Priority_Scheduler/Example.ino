@@ -94,6 +94,8 @@ ISR(TIMER1_COMPA_vect, ISR_NAKED){
     runningQueue.start->SP = SP;
     struct strnode* tmp = readyQueue.dequeue();
     runningQueue.enqueue(tmp, 0);
+    tmp = runningQueue.dequeue();
+    readyQueue.priorityEnqueue(tmp);
     int funcAddr = (int)(tmp->taskptr);
     
     funcAddrL = funcAddr&0x00FF;
