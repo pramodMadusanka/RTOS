@@ -102,7 +102,7 @@ void initTimer(){
 }
 
 ISR(TIMER1_COMPA_vect, ISR_NAKED){
-    if(i>NO_OF_TASKS)
+    if(i==MAJOR_CYCLE)
       i=0;
     int funcAddr = (int)((*(schedule+i))->taskptr);
     i++;
