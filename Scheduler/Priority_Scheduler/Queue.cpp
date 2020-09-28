@@ -28,7 +28,7 @@ void Queue::addTask(char name, void (*taskptr)(void* arg), uint8_t priority){
     }
 }
 
-void Queue::enqueue(struct strnode* node, int wakeupTime){
+void Queue::enqueue(struct PCB* node, int wakeupTime){
 	node->wakeupTime = wakeupTime;
     if(start==NULL){
         start=node;
@@ -79,11 +79,11 @@ struct strnode* Queue::getTail(struct strnode* cur){
     return cur; 
 } 
 
-struct strnode* Queue::partition(struct strnode *head, struct strnode *end, struct strnode **newHead, struct strnode **newEnd){ 
-    struct strnode *pivot = end; 
-    struct strnode* prev = NULL;
-    struct strnode* cur = head;
-    struct strnode* tail = pivot;
+struct PCB* Queue::partition(struct PCB *head, struct PCB *end, struct PCB **newHead, struct PCB **newEnd){ 
+    struct PCB *pivot = end; 
+    struct PCB* prev = NULL;
+    struct PCB* cur = head;
+    struct PCB* tail = pivot;
   
     while (cur != pivot){ 
         if (cur->priority < pivot->priority){ 
@@ -96,7 +96,7 @@ struct strnode* Queue::partition(struct strnode *head, struct strnode *end, stru
             if (prev) 
                 prev->next = cur->next;
                 
-            struct strnode *tmp = cur->next; 
+            struct PCB *tmp = cur->next; 
             cur->next = NULL; 
             tail->next = cur; 
             tail = cur; 
@@ -110,15 +110,15 @@ struct strnode* Queue::partition(struct strnode *head, struct strnode *end, stru
     return pivot; 
 } 
 
-struct strnode* Queue::quickSortRecur(struct strnode *head, struct strnode *end){ 
+struct PCB* Queue::quickSortRecur(struct PCB *head, struct PCB *end){ 
     if (!head || head == end) 
         return head; 
   
-    struct strnode *newHead = NULL, *newEnd = NULL; 
+    struct PCB *newHead = NULL, *newEnd = NULL; 
     
-    struct strnode *pivot = partition(head, end, &newHead, &newEnd); 
+    struct PCB *pivot = partition(head, end, &newHead, &newEnd); 
     if (newHead != pivot){ 
-        struct strnode *tmp = newHead; 
+        struct PCB *tmp = newHead; 
         while (tmp->next != pivot) 
             tmp = tmp->next; 
         tmp->next = NULL; 
@@ -130,7 +130,7 @@ struct strnode* Queue::quickSortRecur(struct strnode *head, struct strnode *end)
     return newHead; 
 }
 
-void Queue::quickSort(struct strnode** headRef){ 
+void Queue::quickSort(struct PCB** headRef){ 
     *headRef = quickSortRecur(*headRef, getTail(*headRef)); 
     return; 
 }
