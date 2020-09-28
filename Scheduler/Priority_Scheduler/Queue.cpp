@@ -130,7 +130,7 @@ struct PCB* Queue::quickSortRecur(struct PCB *head, struct PCB *end){
     return newHead; 
 }
 
-void Queue::quickSort(struct PCB** headRef){ 
+void Queue::sortQueue(struct PCB** headRef){ 
     *headRef = quickSortRecur(*headRef, getTail(*headRef)); 
     return; 
 }
